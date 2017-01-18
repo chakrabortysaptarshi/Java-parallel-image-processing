@@ -35,7 +35,7 @@ import org.junit.Test;
  * 
  *
  */
-public class HW3TestGray {
+public class TestGray {
 
 	static BufferedImage sourceImage;
 	static String sourceImageFilename;
@@ -167,7 +167,7 @@ public class HW3TestGray {
 			System.out.println(Timer.statsToString(timers,meanSerialDuration));
 			
 			//check same as serial solution
-			assertTrue(HW3Utils.equals(serialGray, newImage));
+			assertTrue(Utils.equals(serialGray, newImage));
 			
 	}
 	/**
@@ -204,7 +204,7 @@ public class HW3TestGray {
 		System.out.println(Timer.statsToString(timers,meanSerialDuration));
 
 		//check same as serial solution
-		assertTrue(HW3Utils.equals(serialGray, newImage));
+		assertTrue(Utils.equals(serialGray, newImage));
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class HW3TestGray {
 		System.out.println("printing stats for gray_PS_FJ");
 		System.out.println(Timer.statsToString(timers,meanSerialDuration));
 		// check same as serial solution
-		assertTrue(HW3Utils.equals(serialGray, newImage));
+		assertTrue(Utils.equals(serialGray, newImage));
 	}
 
 	
@@ -251,7 +251,7 @@ public class HW3TestGray {
 	 */
 	public static void main(String[] args) throws Exception{
 		setUpBeforeClass();
-		HW3TestGray test = new HW3TestGray();
+		TestGray test = new TestGray();
 		test.testGray_SS();
 		test.testGray_PS();
 		test.testGray_SS_FJ();

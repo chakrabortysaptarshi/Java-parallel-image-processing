@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class HW3TestColorHistEq {
+public class TestColorHistEq {
 
 	static BufferedImage sourceImage;
 	static String sourceImageFilename;
@@ -141,7 +141,7 @@ public class HW3TestColorHistEq {
 		// print stats
 		System.out.println("printing stats for ColorHistEq_parallel");
 		System.out.println(Timer.statsToString(timers,meanSerialDuration));
-		assertTrue(HW3Utils.equals(serialSolution, newImage));
+		assertTrue(Utils.equals(serialSolution, newImage));
 	}
 
 	
@@ -153,7 +153,7 @@ public class HW3TestColorHistEq {
 	 */
 	public static void main(String[] args) throws Exception{
 		setUpBeforeClass();
-		HW3TestColorHistEq test = new HW3TestColorHistEq();
+		TestColorHistEq test = new TestColorHistEq();
 		test.testColorHistEq_serial();
 		test.testColorHistEq_parallel();
 	}

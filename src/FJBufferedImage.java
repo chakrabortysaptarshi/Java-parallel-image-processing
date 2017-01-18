@@ -7,10 +7,14 @@ import java.util.Hashtable;
 
 import java.util.concurrent.RecursiveAction;
 
+/**
+ * @author ssapt
+ *
+ */
 public class FJBufferedImage extends BufferedImage {
 	
    /**Constructors*/
-	
+	// threshold till which the image will be split further 
 	private static int threshold = 2;
 	
 	public FJBufferedImage(int width, int height, int imageType) {
@@ -45,11 +49,10 @@ public class FJBufferedImage extends BufferedImage {
 	
 	@Override
 	public void setRGB(int xStart, int yStart, int w, int h, int[] rgbArray, int offset, int scansize){
-        /****IMPLEMENT THIS METHOD USING PARALLEL DIVIDE AND CONQUER*****/
+        /****THIS SETRGB METHOD USES PARALLEL DIVIDE AND CONQUER*****/
 		if(h-yStart <= threshold)
 			super.setRGB(xStart, yStart, w, h, rgbArray, yStart*scansize, scansize);
 		else {
-			//FJBufferedImage fjb = this;
 			FJSetRgb fjUp = new FJSetRgb(xStart, yStart, w, h/2, rgbArray, offset, scansize, this);
 			fjUp.fork();
 			FJSetRgb fjDown = new FJSetRgb(xStart, h/2, w, h-h/2, rgbArray, (h/2)*scansize, scansize, this);
@@ -62,17 +65,13 @@ public class FJBufferedImage extends BufferedImage {
 
 	@Override
 	public int[] getRGB(int xStart, int yStart, int w, int h, int[] rgbArray, int offset, int scansize){
-	       /****IMPLEMENT THIS METHOD USING PARALLEL DIVIDE AND CONQUER*****/		
+	       /****THIS GETRGB METHOD USES PARALLEL DIVIDE AND CONQUER*****/		
 		if(h-yStart <= threshold)
 			super.getRGB(xStart, yStart, w, h, rgbArray, yStart*scansize, scansize);
 		else {
-			//FJBufferedImage fjb = this;
 			FJGetRgb fjUp = new FJGetRgb(xStart, yStart, w, h/2, rgbArray, offset, scansize, this);
-			//fj.fork();
 			fjUp.invoke();
-			
 			FJGetRgb fjDown = new FJGetRgb(xStart, h/2, w, h-h/2, rgbArray, (h/2)*scansize, scansize, this);
-			//fj1.fork();
 			fjDown.invoke();
 			fjUp.join();
 			fjDown.join();
@@ -81,9 +80,8 @@ public class FJBufferedImage extends BufferedImage {
 	}
 }
 
-
+//This class extends the fork-join framework and calls the setRGB method in parallel  
 class FJSetRgb extends RecursiveAction {
-
 	private static final long serialVersionUID = 1L;
 	int xStart, yStart, w, h, offset, scansize;
 	int[] rgbArray;
@@ -106,8 +104,9 @@ class FJSetRgb extends RecursiveAction {
 	}
 }
 
-class FJGetRgb extends RecursiveAction {
 
+// This class extends the fork-join framework and calls the getRGB method in parallel  
+class FJGetRgb extends RecursiveAction {
 	private static final long serialVersionUID = 1L;
 	int xStart, yStart, w, h, offset, scansize;
 	int[] rgbArray;

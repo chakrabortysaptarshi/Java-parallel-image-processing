@@ -36,7 +36,7 @@ public class Gray {
 								+ (colorModel.getBlue(pixel) * .114)))
 						// make a new pixel where all three colors have the same
 						// gray value
-						.map(grayVal -> HW3Utils.makeRGBPixel(grayVal, grayVal, grayVal))
+						.map(grayVal -> Utils.makeRGBPixel(grayVal, grayVal, grayVal))
 						// convert stream to array
 						.toArray();
 		time.now();
@@ -66,7 +66,7 @@ public class Gray {
 								+ (colorModel.getBlue(pixel) * .114)))
 						// make a new pixel where all three colors have the same
 						// gray value
-						.map(grayVal -> HW3Utils.makeRGBPixel(grayVal, grayVal, grayVal))
+						.map(grayVal -> Utils.makeRGBPixel(grayVal, grayVal, grayVal))
 						// convert stream to array
 						.toArray();
 		time.now();
@@ -82,7 +82,7 @@ public class Gray {
 
 	public static Timer gray_PS_FJ(FJBufferedImage image, FJBufferedImage newImage) {
 		Timer time = new Timer(labels);
-		/**Implement this function with parallel stream processing and parallel setRGB and getRGB */
+		/**this function is implemented with parallel stream processing and parallel setRGB and getRGB */
 		ColorModel colorModel = ColorModel.getRGBdefault();
 		int w = image.getWidth();
 		int h = image.getHeight();
@@ -99,7 +99,7 @@ public class Gray {
 								+ (colorModel.getBlue(pixel) * .114)))
 						// make a new pixel where all three colors have the same
 						// gray value
-						.map(grayVal -> HW3Utils.makeRGBPixel(grayVal, grayVal, grayVal))
+						.map(grayVal -> Utils.makeRGBPixel(grayVal, grayVal, grayVal))
 						// convert stream to array
 						.toArray();
 		time.now();
@@ -131,7 +131,7 @@ public class Gray {
 								+ (colorModel.getBlue(pixel) * .114)))
 						// make a new pixel where all three colors have the same
 						// gray value
-						.map(grayVal -> HW3Utils.makeRGBPixel(grayVal, grayVal, grayVal))
+						.map(grayVal -> Utils.makeRGBPixel(grayVal, grayVal, grayVal))
 						// convert stream to array
 						.toArray();
 		time.now();

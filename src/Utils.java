@@ -1,7 +1,7 @@
 
 import java.awt.image.BufferedImage;
 
-public class HW3Utils {
+public class Utils {
 
 
 	
